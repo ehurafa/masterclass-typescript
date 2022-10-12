@@ -8,7 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const EmailService_1 = __importDefault(require("../services/EmailService"));
 const users = [
     { name: 'Rafael', email: 'rafael@rafael.eumesmo' }
 ];
@@ -16,6 +20,16 @@ exports.default = {
     index(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
             return res.json(users);
+        });
+    },
+    create(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const emailService = new EmailService_1.default();
+            emailService.sendMail({
+                to: { name: 'Ayrton Senna', email: 'numberone@f1.com' },
+                message: { subject: 'Bem-vindo ao sistema', body: 'Seja Bem-vindo' }
+            });
+            return res.send();
         });
     }
 };

@@ -10,4 +10,5 @@ routes.get('/', (req, res) => {
     return res.send('Hellow World 2');
 });
 routes.get('/users', UserController_1.default.index);
+routes.post('/users', UserController_1.default.create);
 exports.default = routes;
